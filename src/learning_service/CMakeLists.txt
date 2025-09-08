@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   turtlesim
   std_srvs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -75,6 +76,15 @@ find_package(catkin REQUIRED COMPONENTS
 #   std_msgs
 # )
 
+add_service_files(
+  FILES
+  person.srv
+)
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
@@ -107,7 +117,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES learning_service
-  CATKIN_DEPENDS roscpp rospy std_msgs turtlesim std_srvs
+  CATKIN_DEPENDS roscpp rospy std_msgs turtlesim std_srvs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -212,3 +222,11 @@ target_link_libraries(turtle_spawn ${catkin_LIBRARIES})
 
 add_executable(turtle_command_server src/turtle_command_server.cpp)
 target_link_libraries(turtle_command_server ${catkin_LIBRARIES})
+
+add_executable(person_server src/person_server.cpp)
+target_link_libraries(person_server ${catkin_LIBRARIES})
+add_dependencies(person_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(person_client src/person_client.cpp)
+target_link_libraries(person_client ${catkin_LIBRARIES})
+add_dependencies(person_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
