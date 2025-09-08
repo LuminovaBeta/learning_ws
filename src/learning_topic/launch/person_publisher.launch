@@ -1,0 +1,3 @@
+<launch>
+    <node name="person_pub_node" pkg="learning_topic" type="person_publisher" output="screen"/>
+</launch>

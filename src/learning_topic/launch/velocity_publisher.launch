@@ -1,0 +1,7 @@
+<launch>
+    <!-- 启动小乌龟仿真 -->
+    <node name="turtlesim_node" pkg="turtlesim" type="turtlesim_node" output="screen"/>
+
+    <!-- 启动学习包中的速度发布器 -->
+    <node name="velocity_publisher" pkg="learning_topic" type="velocity_publisher" output="screen"/>
+</launch>
