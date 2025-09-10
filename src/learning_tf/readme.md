@@ -45,3 +45,58 @@ rosrun learning_tf turtle_tf_broadcaster __name:=turtle1_tf_broadcaster /turtle1
 rosrun learning_tf turtle_tf_broadcaster __name:=turtle2_tf_broadcaster /turtle2
 rosrun learning_tf turtle_tf_listener
 ```
+
+# launch
+## node标签
+- `pkg`:节点所在的功能包名称
+- `type`：节点的可执行文件名
+- `name`：节点运行时的名称，会覆盖节点内初始化时定义的节点名
+- `output`：一般是screen
+- `respawn`：
+- `required`：
+- `ns`：命名空间，
+- `args`：
+
+## param/rosparam
+设置ros系统运行中的参数，存储在参数服务器
+`<param name="output_frame" value="odom"/>`
+- `name`：参数名
+- `value`：参数值
+如果需要加载一个参数文件里多个参数
+`<rosparam file="params.yaml" command="load" ns="params"/>`
+
+## arg
+launch文件内部的局部变量
+```
+<arg name="arg-name" default="arg-value"/>
+```
+- `name`:参数名
+- `value`：参数值
+
+- 调用
+`<param name="foo" value="$(arg arg-name)"/>`，`<node name="node" pkg="package" type="type" args="$(arg arg-name)"/>`
+
+## 重映射
+- remap
+`<remap from="/turtlebot.cmd_vel" to="/cmd_vel"/>`
+- `from`原命名
+- `to`：映射之后的名字
+
+## 嵌套
+`<include file="$(dirname)/other.launch"/>`
+- file：包含其他的launch文件
+
+# 可视化工具
+## rqt工具箱
+- `rqt`:综合工具，所有下面的工具的集合，可以作为开发工具的上位机
+- `rqt_console`:可以查看日志输出，并筛选对自己有用的警告与报错
+- `rqt_plot`:查看变量的曲线变化
+- `rqt_image_view`:图像rgb节点的输出
+## Rviz
+数据显示平台
+
+## gazebo
+物理仿真平台
+
+
+
