@@ -1,0 +1,13 @@
+<launch>
+    <!-- 启动 turtlesim 节点 -->
+    <node name="turtlesim" pkg="turtlesim" type="turtlesim_node" output="screen"/>
+
+    <!-- 启动 turtle1 的 tf 广播节点 -->
+    <node name="turtle1_tf_broadcaster" pkg="learning_tf" type="turtle_tf_broadcaster" args="/turtle1" output="screen"/>
+
+    <!-- 启动 turtle2 的 tf 广播节点 -->
+    <node name="turtle2_tf_broadcaster" pkg="learning_tf" type="turtle_tf_broadcaster" args="/turtle2" output="screen"/>
+
+    <!-- 启动 tf 监听器 -->
+    <node name="turtle_tf_listener" pkg="learning_tf" type="turtle_tf_listener" output="screen"/>
+</launch>
